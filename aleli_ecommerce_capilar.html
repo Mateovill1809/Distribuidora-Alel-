@@ -1,0 +1,480 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --brown:#4a3728;--brown2:#6b4f3a;--beige:#f5efe6;--beige2:#ede3d5;--beige3:#d6c8b5;--cream:#faf7f3;
+  --text:#2c1f14;--text2:#6b5744;--text3:#9c856e;--green:#6b7c5c;--green2:#8fa07d;
+  --border:#ddd0be;--white:#fff;--wa:#25D366;--wa-dark:#128C7E;
+}
+body{font-family:'Jost',sans-serif;background:transparent;color:var(--text)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+.nav-logo{display:flex;flex-direction:column;line-height:1}
+.nav-logo-name{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--brown);letter-spacing:1px}
+.nav-logo-sub{font-size:9px;letter-spacing:3px;color:var(--text3);text-transform:uppercase;font-weight:300}
+.nav-right{display:flex;gap:6px;align-items:center}
+.nav-btn{padding:6px 14px;border-radius:2px;border:1px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;font-size:12px;font-family:'Jost',sans-serif;letter-spacing:.5px;transition:all .2s}
+.nav-btn:hover{background:var(--beige);border-color:var(--beige3)}
+.nav-btn.active-nav{background:var(--brown);color:var(--white);border-color:var(--brown)}
+.cart-pill{background:var(--brown);color:var(--white);border-radius:10px;padding:2px 7px;font-size:10px;margin-left:4px;font-weight:500}
+.page{display:none}.page.active{display:block}
+.hero{background:var(--beige);padding:36px 24px;text-align:center;border-bottom:1px solid var(--border)}
+.hero-eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--green);margin-bottom:10px;font-weight:400}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:38px;color:var(--brown);line-height:1.1;margin-bottom:10px}
+.hero-title em{font-style:italic;color:var(--brown2)}
+.hero-sub{font-size:13px;color:var(--text2);max-width:340px;margin:0 auto 20px;line-height:1.7;font-weight:300}
+.hero-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.hero-tag{padding:4px 12px;border-radius:20px;border:1px solid var(--beige3);font-size:11px;color:var(--text2);background:var(--white);letter-spacing:.5px}
+.filters{display:flex;gap:6px;padding:14px 20px;overflow-x:auto;border-bottom:1px solid var(--border);background:var(--white)}
+.filter-btn{padding:5px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;font-size:12px;cursor:pointer;white-space:nowrap;color:var(--text2);font-family:'Jost',sans-serif;transition:all .2s}
+.filter-btn:hover,.filter-btn.active{background:var(--brown);color:var(--white);border-color:var(--brown)}
+.products-section{padding:20px}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:16px;margin-top:14px}
+.product-card{background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:border-color .2s}
+.product-card:hover{border-color:var(--brown2)}
+.product-badge{position:absolute;;top:8px;left:8px;background:var(--green);color:#fff;font-size:9px;letter-spacing:1px;padding:2px 7px;border-radius:2px;text-transform:uppercase}
+.product-body{padding:12px}
+.product-cat{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:4px}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--brown);margin-bottom:2px;line-height:1.2}
+.product-desc{font-size:11px;color:var(--text3);margin-bottom:8px;line-height:1.5;font-weight:300}
+.product-price{font-size:15px;font-weight:500;color:var(--brown);margin-bottom:10px}
+.product-stock-info{font-size:10px;color:var(--text3);margin-bottom:8px}
+.stock-low-txt{color:#b07d2a!important}.stock-out-txt{color:#b04a4a!important}
+.btn-add{width:100%;padding:8px;background:var(--brown);color:var(--white);border:none;border-radius:2px;font-size:11px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;transition:background .2s}
+.btn-add:hover{background:var(--brown2)}
+.btn-add:disabled{background:var(--beige3);color:var(--text3);cursor:default}
+.qty-row{display:flex;align-items:center;gap:6px;justify-content:center}
+.q-btn{width:26px;height:26px;border:1px solid var(--border);background:transparent;border-radius:2px;cursor:pointer;font-size:14px;color:var(--brown);display:flex;align-items:center;justify-content:center}
+.q-btn:hover{background:var(--beige)}
+.cart-page{padding:20px;max-width:560px;margin:0 auto}
+.cart-header{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--brown);margin-bottom:4px}
+.cart-sub{font-size:12px;color:var(--text3);margin-bottom:20px;letter-spacing:.5px}
+.cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);align-items:center}
+.ci-img{width:48px;height:48px;background:var(--beige);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.ci-info{flex:1}
+.ci-name{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--brown);margin-bottom:2px}
+.ci-price{font-size:12px;color:var(--text3)}
+.cart-total-block{background:var(--beige);border-radius:4px;padding:18px;margin-top:16px}
+.total-row{display:flex;justify-content:space-between;font-size:13px;padding:4px 0;color:var(--text2)}
+.total-final{display:flex;justify-content:space-between;font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--brown);border-top:1px solid var(--border);margin-top:8px;padding-top:12px}
+.btn-wa{width:100%;margin-top:14px;padding:13px;background:var(--wa);color:#fff;border:none;border-radius:2px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .2s}
+.btn-wa:hover{background:var(--wa-dark)}
+.btn-wa svg{width:18px;height:18px;fill:#fff;flex-shrink:0}
+.wa-note{font-size:11px;color:var(--text3);text-align:center;margin-top:8px;line-height:1.5}
+.free-ship-note{font-size:11px;color:var(--green);text-align:center;margin-top:8px}
+.admin-page{padding:20px}
+.admin-header{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--brown);margin-bottom:2px}
+.admin-sub{font-size:12px;color:var(--text3);margin-bottom:18px;letter-spacing:.5px}
+.tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:20px}
+.tab{padding:9px 18px;font-size:12px;cursor:pointer;border-bottom:2px solid transparent;color:var(--text3);background:transparent;border-top:none;border-left:none;border-right:none;font-family:'Jost',sans-serif;letter-spacing:.5px;transition:all .15s}
+.tab.on{color:var(--brown);border-bottom-color:var(--brown)}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+.stat{background:var(--beige);border-radius:3px;padding:14px 12px}
+.stat-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:6px}
+.stat-v{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--brown)}
+.inv-table{width:100%;border-collapse:collapse;font-size:12px}
+.inv-table th{text-align:left;padding:8px 10px;color:var(--text3);font-weight:400;letter-spacing:1px;text-transform:uppercase;font-size:10px;border-bottom:1px solid var(--border)}
+.inv-table td{padding:10px;border-bottom:1px solid var(--border);vertical-align:middle;color:var(--text)}
+.badge{display:inline-flex;padding:2px 8px;border-radius:2px;font-size:10px;letter-spacing:.5px}
+.badge-ok{background:#e8f0e2;color:#4a6338}.badge-low{background:#f5eddc;color:#8a6020}.badge-out{background:#f5e2e2;color:#8a3030}
+.quick-btns{display:flex;gap:4px}
+.q-stock{padding:3px 8px;border:1px solid var(--border);background:transparent;border-radius:2px;font-size:11px;cursor:pointer;color:var(--text2);font-family:'Jost',sans-serif}
+.q-stock:hover{background:var(--beige)}
+.q-stock.danger{color:#8a3030;border-color:#e0b8b8}.q-stock.danger:hover{background:#f5e2e2}
+.adjust-box{background:var(--beige);border-radius:4px;padding:14px;margin-top:16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.adjust-box select,.adjust-box input{padding:7px 10px;border:1px solid var(--border);border-radius:2px;background:var(--white);color:var(--text);font-size:12px;font-family:'Jost',sans-serif}
+.adjust-box select{flex:2;min-width:120px}.adjust-box input{flex:1;min-width:60px}
+.btn-apply{padding:7px 16px;background:var(--brown);color:var(--white);border:none;border-radius:2px;font-size:11px;letter-spacing:1px;cursor:pointer;font-family:'Jost',sans-serif}
+.form-field{margin-bottom:12px}
+.form-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);display:block;margin-bottom:5px}
+.form-input{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:2px;background:var(--white);color:var(--text);font-size:13px;font-family:'Jost',sans-serif}
+.form-input:focus{outline:none;border-color:var(--brown2)}
+.btn-primary-full{width:100%;padding:11px;background:var(--brown);color:var(--white);border:none;border-radius:2px;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;margin-top:4px}
+.empty{text-align:center;padding:40px;color:var(--text3)}
+.toast{position:fixed;bottom:18px;right:18px;background:var(--brown);color:var(--white);border-radius:3px;padding:10px 16px;font-size:12px;letter-spacing:.5px;z-index:999;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+.product-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.ci-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:2px;
+}
+</style>
+
+<h2 style="position:absolute;left:-9999px">Alelí — Tienda de productos capilares naturales</h2>
+
+<nav class="nav">
+  <div class="nav-logo">
+    <span class="nav-logo-name">Alelí</span>
+    <span class="nav-logo-sub">Productos para el hogar</span>
+  </div>
+  <div class="nav-right">
+    <button class="nav-btn" onclick="go('shop')"><i class="ti ti-home" aria-hidden="true"></i> Tienda</button>
+    <button class="nav-btn" onclick="go('admin')"><i class="ti ti-adjustments" aria-hidden="true"></i> Admin</button>
+    <button class="nav-btn" onclick="go('cart')">
+      <i class="ti ti-shopping-bag" aria-hidden="true"></i> Bolsa
+      <span class="cart-pill" id="cart-count">0</span>
+    </button>
+  </div>
+</nav>
+
+<div class="page active" id="page-shop">
+  <div class="hero">
+    <div class="hero-eyebrow">Cuidado capilar natural</div>
+    <div class="hero-title">Tu cabello merece<br><em>lo mejor de la naturaleza</em></div>
+    <div class="hero-sub">Shampoos, acondicionadores y tratamientos formulados con ingredientes naturales para un cabello sano y brillante.</div>
+    <div class="hero-tags">
+      <span class="hero-tag">Sin sulfatos agresivos</span>
+      <span class="hero-tag">Ingredientes naturales</span>
+      <span class="hero-tag">Cruelty free</span>
+    </div>
+  </div>
+  <div class="filters" id="filters-bar"></div>
+  <div class="products-section">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--brown)">Nuestros productos</div>
+    <div class="products-grid" id="products-grid"></div>
+  </div>
+</div>
+
+<div class="page" id="page-cart">
+  <div class="cart-page">
+    <div class="cart-header">Tu bolsa</div>
+    <div class="cart-sub" id="cart-sub-text">Revisá tu selección</div>
+    <div id="cart-items-list"></div>
+    <div id="cart-total-area"></div>
+  </div>
+</div>
+
+<div class="page" id="page-admin">
+  <div class="admin-page">
+    <div class="admin-header">Panel de gestión</div>
+    <div class="admin-sub">Alelí · Productos para el hogar</div>
+    <div class="tabs">
+      <button class="tab on" onclick="aTab('stock',this)">Inventario</button>
+      <button class="tab" onclick="aTab('add',this)">Nuevo producto</button>
+    </div>
+    <div id="tab-stock">
+      <div class="stats-row" id="admin-stats"></div>
+      <table class="inv-table">
+        <thead><tr><th>Producto</th><th>Categoría</th><th>Precio</th><th>Stock</th><th>Estado</th><th>Ajuste rápido</th></tr></thead>
+        <tbody id="inv-tbody"></tbody>
+      </table>
+      <div class="adjust-box">
+        <span style="font-size:11px;letter-spacing:1px;color:var(--text3);text-transform:uppercase">Ajuste manual</span>
+        <select id="adj-sel"></select>
+        <input type="number" id="adj-val" placeholder="Cantidad">
+        <select id="adj-op">
+          <option value="set">Establecer en</option>
+          <option value="add">Sumar</option>
+          <option value="sub">Restar</option>
+        </select>
+        <button class="btn-apply" onclick="doAdjust()">Aplicar</button>
+      </div>
+    </div>
+    <div id="tab-add" style="display:none;max-width:400px">
+      <div class="form-field"><label class="form-label">Nombre del producto</label><input class="form-input" id="np-name" placeholder="Ej: Shampoo reparador keratina"></div>
+      <div class="form-field"><label class="form-label">Precio ($)</label><input class="form-input" type="number" id="np-price" placeholder="3500"></div>
+      <div class="form-field"><label class="form-label">Stock inicial</label><input class="form-input" type="number" id="np-stock" placeholder="20"></div>
+      <div class="form-field"><label class="form-label">Categoría</label>
+        <select class="form-input" id="np-cat">
+          <option>Shampoo</option><option>Acondicionador</option><option>Tratamiento</option><option>Protector térmico</option><option>Reparador de puntas</option><option>Mascarilla</option>
+        </select>
+      </div>
+      <div class="form-field"><label class="form-label">Descripción breve</label><input class="form-input" id="np-desc" placeholder="Ej: Nutrición profunda con aceite de argán"></div>
+      <div class="form-field">
+        <label class="form-label">Imagen del producto</label>
+        <input class="form-input" type="file"
+         id="np-image"
+         accept="image/*">
+</div>
+      <button class="btn-primary-full" onclick="addProd()">Agregar a la tienda</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const WA_NUMBER = "5493513555522";
+
+let products=[
+  {id:1,name:"Shampoo reparador",cat:"Shampoo",price:3200,stock:14,image:"Productos/repdep.jpg",desc:"Restaura la fibra capilar dañada con proteínas vegetales"},
+  {id:2,name:"Acondicionador nutritivo",cat:"Acondicionador",price:2900,stock:3,image:"Productos/default.jpg",desc:"Hidratación profunda con aceite de argán y manteca de karité"},
+  {id:3,name:"Mascarilla capilar",cat:"Mascarilla",price:4100,stock:0,image:"Productos/default.jpg",desc:"Tratamiento intensivo para cabello muy dañado"},
+  {id:4,name:"Protector térmico",cat:"Protector térmico",price:3500,stock:8,image:"Productos/default.jpg",desc:"Protege hasta 230°C sin pesar el cabello"},
+  {id:5,name:"Reparador de puntas",cat:"Reparador de puntas",price:2200,stock:2,image:"Productos/default.jpg",desc:"Sérum liviano para puntas abiertas y rebeldes"},
+  {id:6,name:"Aceite capilar natural",cat:"Tratamiento",price:4800,stock:11,image:"Productos/default.jpg",desc:"Blend de aceites naturales para brillo y nutrición"},
+];
+let cart={};
+let nextId=7;
+let activeCat="Todo";
+const cats=["Todo","Shampoo","Acondicionador","Tratamiento","Protector térmico","Reparador de puntas","Mascarilla"];
+
+function fmt(n){return "$"+n.toLocaleString("es-AR")}
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2300)}
+
+function buildWAMessage(){
+  const keys=Object.keys(cart);
+  let sub=0;
+  let lines=["🌿 *Hola Alelí!* Me gustaría hacer el siguiente pedido:\n"];
+  keys.forEach(id=>{
+    const p=products.find(x=>x.id==id);
+    const q=cart[id];
+    sub+=p.price*q;
+    lines.push(`• *${p.name}* x${q} → ${fmt(p.price*q)}`);
+  });
+  const envio=sub>=20000?0:1800;
+  lines.push(`\n💰 *Subtotal:* ${fmt(sub)}`);
+  lines.push(`🚚 *Envío:* ${envio===0?"Gratis 🎉":fmt(envio)}`);
+  lines.push(`✅ *Total:* ${fmt(sub+envio)}`);
+  lines.push("\n¡Espero su respuesta para coordinar el pago y la entrega!");
+  return lines.join("\n");
+}
+
+function confirmOrder(){
+  const msg=buildWAMessage();
+  const url=`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+  Object.keys(cart).forEach(id=>{
+    const p=products.find(x=>x.id==id);
+    p.stock=Math.max(0,p.stock-cart[id]);
+  });
+  cart={};
+  updateBadge();
+  toast("Abriendo WhatsApp con tu pedido ✓");
+  renderCart();
+  setTimeout(()=>window.open(url,"_blank"),400);
+}
+
+function go(p){
+  document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+  document.getElementById("page-"+p).classList.add("active");
+  document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active-nav"));
+  const idx=p==="shop"?0:p==="admin"?1:2;
+  document.querySelectorAll(".nav-btn")[idx].classList.add("active-nav");
+  if(p==="shop")renderShop();
+  if(p==="admin")renderAdmin();
+  if(p==="cart")renderCart();
+}
+
+function renderFilters(){
+  document.getElementById("filters-bar").innerHTML=cats.map(c=>
+    `<button class="filter-btn${c===activeCat?" active":""}" onclick="setCat('${c}')">${c}</button>`
+  ).join("");
+}
+
+function setCat(c){activeCat=c;renderShop()}
+
+function renderShop(){
+  renderFilters();
+  const filtered=activeCat==="Todo"?products:products.filter(p=>p.cat===activeCat);
+  document.getElementById("products-grid").innerHTML=filtered.map(p=>{
+    const inCart=cart[p.id]||0;
+    const sClass=p.stock===0?"stock-out-txt":p.stock<=3?"stock-low-txt":"";
+    const sLabel=p.stock===0?"Sin stock":p.stock<=3?`Solo ${p.stock} disponibles`:`${p.stock} en stock`;
+    return `<div class="product-card">
+      <div class="product-img">
+        <img src="${p.image}" alt="${p.name}">
+      </div>
+      <div class="product-body">
+        <div class="product-cat">${p.cat}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-price">${fmt(p.price)}</div>
+        <div class="product-stock-info ${sClass}">${sLabel}</div>
+        ${p.stock===0
+          ?`<button class="btn-add" disabled>Sin stock</button>`
+          :inCart>0
+          ?`<div class="qty-row"><button class="q-btn" onclick="chCart(${p.id},-1)">−</button><span style="font-size:13px;min-width:20px;text-align:center;color:var(--brown)">${inCart}</span><button class="q-btn" onclick="chCart(${p.id},1)">+</button></div>`
+          :`<button class="btn-add" onclick="chCart(${p.id},1)">Agregar</button>`
+        }
+      </div>
+    </div>`;
+  }).join("");
+  updateBadge();
+}
+
+function chCart(id,d){
+  const p=products.find(x=>x.id===id);
+  if(!p)return;
+  const cur=cart[id]||0;
+  if(d>0&&cur>=p.stock){toast("No hay más stock disponible");return;}
+  const nxt=Math.max(0,Math.min(cur+d,p.stock));
+  if(nxt===0)delete cart[id];else cart[id]=nxt;
+  renderShop();updateBadge();
+}
+
+function updateBadge(){
+  document.getElementById("cart-count").textContent=Object.values(cart).reduce((a,b)=>a+b,0);
+}
+
+function renderCart(){
+  const keys=Object.keys(cart);
+  const el=document.getElementById("cart-items-list");
+  const ta=document.getElementById("cart-total-area");
+  if(!keys.length){
+    el.innerHTML=`<div class="empty"><div style="font-size:36px;margin-bottom:10px">🌿</div><p style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--brown)">Tu bolsa está vacía</p><p style="font-size:12px;color:var(--text3);margin-top:6px">Explorá nuestros productos naturales</p></div>`;
+    ta.innerHTML="";
+    document.getElementById("cart-sub-text").textContent="Agregá productos desde la tienda";
+    return;
+  }
+  document.getElementById("cart-sub-text").textContent=`${keys.length} ${keys.length===1?"producto":"productos"} seleccionados`;
+  let sub=0;
+  el.innerHTML=keys.map(id=>{
+    const p=products.find(x=>x.id==id);
+    const q=cart[id];sub+=p.price*q;
+    return `<div class="cart-item">
+      <div class="ci-img">
+        <img src="${p.image}" alt="${p.name}">
+      </div>
+      <div class="ci-info">
+        <div class="ci-name">${p.name}</div>
+        <div class="ci-price">${fmt(p.price)} × ${q}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--brown);margin-bottom:6px">${fmt(p.price*q)}</div>
+        <div class="qty-row" style="justify-content:flex-end">
+          <button class="q-btn" onclick="chCart(${p.id},-1);renderCart()">−</button>
+          <span style="font-size:13px;min-width:20px;text-align:center;color:var(--brown)">${q}</span>
+          <button class="q-btn" onclick="chCart(${p.id},1);renderCart()">+</button>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+  const envio=sub>=20000?0:1800;
+  ta.innerHTML=`<div class="cart-total-block">
+    <div class="total-row"><span>Subtotal</span><span>${fmt(sub)}</span></div>
+    <div class="total-row"><span>Envío</span><span>${envio===0?'<span style="color:var(--green)">Gratis</span>':fmt(envio)}</span></div>
+    <div class="total-final"><span>Total</span><span>${fmt(sub+envio)}</span></div>
+    <button class="btn-wa" onclick="confirmOrder()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Confirmar pedido por WhatsApp
+    </button>
+    <div class="wa-note">Al confirmar, se abrirá WhatsApp con el detalle completo de tu pedido.</div>
+    ${envio>0?`<div class="free-ship-note" style="margin-top:8px">Sumá ${fmt(20000-sub)} más para envío gratis 🌿</div>`:''}
+  </div>`;
+}
+
+function renderAdmin(){
+  const sinStock=products.filter(p=>p.stock===0).length;
+  const bajo=products.filter(p=>p.stock>0&&p.stock<=3).length;
+  document.getElementById("admin-stats").innerHTML=`
+    <div class="stat"><div class="stat-l">Productos</div><div class="stat-v">${products.length}</div></div>
+    <div class="stat"><div class="stat-l">Stock bajo</div><div class="stat-v" style="color:#8a6020">${bajo}</div></div>
+    <div class="stat"><div class="stat-l">Sin stock</div><div class="stat-v" style="color:#8a3030">${sinStock}</div></div>`;
+  document.getElementById("inv-tbody").innerHTML=products.map(p=>{
+    const b=p.stock===0?'<span class="badge badge-out">Sin stock</span>':p.stock<=3?'<span class="badge badge-low">Stock bajo</span>':'<span class="badge badge-ok">Disponible</span>';
+    return `<tr>
+      <td>
+        <img src="${p.image}" style="width:32px;height:32px;object-fit:cover;border-radius:4px;margin-right:8px;vertical-align:middle">
+        ${p.name}
+      </td>
+      <td style="color:var(--text3)">${p.cat}</td>
+      <td>${fmt(p.price)}</td>
+      <td><strong>${p.stock}</strong></td>
+      <td>${b}</td>
+      <td><div class="quick-btns">
+        <button class="q-stock" onclick="qStock(${p.id},5)">+5</button>
+        <button class="q-stock" onclick="qStock(${p.id},10)">+10</button>
+        <button class="q-stock" onclick="qStock(${p.id},-1)">−1</button>
+        <button class="q-stock danger" onclick="delProd(${p.id})"><i class="ti ti-trash" aria-hidden="true"></i></button>
+      </div></td>
+    </tr>`;
+  }).join("");
+  document.getElementById("adj-sel").innerHTML=products.map(p=>`
+  <option value="${p.id}">
+    ${p.name}
+  </option>`).join("");
+}
+
+function qStock(id,d){
+  const p=products.find(x=>x.id===id);
+  p.stock=Math.max(0,p.stock+d);
+  toast(`${p.name} → ${p.stock} unidades`);
+  renderAdmin();
+}
+
+function doAdjust(){
+  const id=parseInt(document.getElementById("adj-sel").value);
+  const val=parseInt(document.getElementById("adj-val").value);
+  const op=document.getElementById("adj-op").value;
+  if(isNaN(val)){toast("Ingresá una cantidad válida");return;}
+  const p=products.find(x=>x.id===id);
+  if(op==="set")p.stock=Math.max(0,val);
+  else if(op==="add")p.stock+=val;
+  else p.stock=Math.max(0,p.stock-val);
+  toast(`${p.name}: stock actualizado a ${p.stock}`);
+  renderAdmin();
+}
+
+function delProd(id){
+  const p=products.find(x=>x.id===id);
+  if(!confirm(`¿Eliminar "${p.name}" de la tienda?`))return;
+  products=products.filter(x=>x.id!==id);
+  delete cart[id];updateBadge();
+  toast(`"${p.name}" eliminado`);renderAdmin();
+}
+
+function addProd(){
+
+  const name=document.getElementById("np-name").value.trim();
+  const price=parseFloat(document.getElementById("np-price").value);
+  const stock=parseInt(document.getElementById("np-stock").value);
+  const cat=document.getElementById("np-cat").value;
+  const desc=document.getElementById("np-desc").value.trim() || "Producto Alelí";
+
+  const file=document.getElementById("np-image").files[0];
+
+  if(!name || isNaN(price) || isNaN(stock)){
+    toast("Completá todos los campos");
+    return;
+  }
+
+  if(!file){
+    toast("Seleccioná una imagen");
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function(e){
+
+    products.push({
+      id: nextId++,
+      name,
+      price,
+      stock,
+      cat,
+      desc,
+      image: e.target.result
+    });
+
+    document.getElementById("np-name").value="";
+    document.getElementById("np-price").value="";
+    document.getElementById("np-stock").value="";
+    document.getElementById("np-desc").value="";
+    document.getElementById("np-image").value="";
+
+    renderAdmin();
+    renderShop();
+
+    toast(`"${name}" agregado ✓`);
+  };
+
+  reader.readAsDataURL(file);
+}
+
+function aTab(t,el){
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));
+  el.classList.add("on");
+  document.getElementById("tab-stock").style.display=t==="stock"?"block":"none";
+  document.getElementById("tab-add").style.display=t==="add"?"block":"none";
+}
+
+go("shop");
+</script>
