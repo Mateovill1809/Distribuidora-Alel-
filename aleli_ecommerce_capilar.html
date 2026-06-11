@@ -1,4 +1,3 @@
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
@@ -9,7 +8,7 @@
 }
 body{font-family:'Jost',sans-serif;background:transparent;color:var(--text)}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
-.nav-logo{display:flex;flex-direction:column;line-height:1}
+.nav-logo{display:flex;flex-direction:column;line-height:1;cursor:pointer}
 .nav-logo-name{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--brown);letter-spacing:1px}
 .nav-logo-sub{font-size:9px;letter-spacing:3px;color:var(--text3);text-transform:uppercase;font-weight:300}
 .nav-right{display:flex;gap:6px;align-items:center}
@@ -33,10 +32,10 @@ body{font-family:'Jost',sans-serif;background:transparent;color:var(--text)}
 .filter-btn{padding:5px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;font-size:12px;cursor:pointer;white-space:nowrap;color:var(--text2);font-family:'Jost',sans-serif;transition:all .2s}
 .filter-btn:hover,.filter-btn.active{background:var(--brown);color:var(--white);border-color:var(--brown)}
 
-/* PRODUCTOS */
+/* GRILLA */
 .products-section{padding:20px}
 .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-top:14px}
-.product-card{background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:border-color .2s}
+.product-card{background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:border-color .2s;cursor:pointer}
 .product-card:hover{border-color:var(--brown2)}
 .product-img-wrap{height:160px;background:var(--beige);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .product-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
@@ -47,7 +46,7 @@ body{font-family:'Jost',sans-serif;background:transparent;color:var(--text)}
 .product-body{padding:12px}
 .product-cat{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:4px}
 .product-name{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--brown);margin-bottom:2px;line-height:1.2}
-.product-desc{font-size:11px;color:var(--text3);margin-bottom:8px;line-height:1.5;font-weight:300}
+.product-desc-short{font-size:11px;color:var(--text3);margin-bottom:8px;line-height:1.5;font-weight:300}
 .product-price{font-size:15px;font-weight:500;color:var(--brown);margin-bottom:8px}
 .product-stock-info{font-size:10px;color:var(--text3);margin-bottom:8px}
 .stock-low-txt{color:#b07d2a!important}.stock-out-txt{color:#b04a4a!important}
@@ -57,6 +56,37 @@ body{font-family:'Jost',sans-serif;background:transparent;color:var(--text)}
 .qty-row{display:flex;align-items:center;gap:6px;justify-content:center}
 .q-btn{width:26px;height:26px;border:1px solid var(--border);background:transparent;border-radius:2px;cursor:pointer;font-size:14px;color:var(--brown);display:flex;align-items:center;justify-content:center}
 .q-btn:hover{background:var(--beige)}
+
+/* DETALLE DEL PRODUCTO */
+.detail-page{padding:0}
+.detail-back{display:flex;align-items:center;gap:6px;padding:14px 20px;font-size:12px;color:var(--text3);cursor:pointer;border-bottom:1px solid var(--border);background:var(--white);letter-spacing:.5px}
+.detail-back:hover{color:var(--brown)}
+.detail-back svg{width:14px;height:14px}
+.detail-body{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:900px;margin:0 auto}
+.detail-img-col{background:var(--beige);min-height:380px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.detail-img-col img{width:100%;height:100%;object-fit:cover}
+.detail-info-col{padding:32px 28px;display:flex;flex-direction:column;gap:14px}
+.detail-cat{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--green)}
+.detail-name{font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--brown);line-height:1.1}
+.detail-price{font-size:24px;font-weight:500;color:var(--brown)}
+.detail-stock{font-size:11px;color:var(--text3)}
+.detail-divider{height:1px;background:var(--border)}
+.detail-desc-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text3)}
+.detail-desc-text{font-size:13px;color:var(--text2);line-height:1.8;font-weight:300}
+.detail-actions{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.btn-detail-add{padding:12px;background:var(--brown);color:var(--white);border:none;border-radius:2px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;transition:background .2s}
+.btn-detail-add:hover{background:var(--brown2)}
+.btn-detail-add:disabled{background:var(--beige3);color:var(--text3);cursor:default}
+.detail-qty-row{display:flex;align-items:center;gap:10px}
+.detail-qty-btn{width:34px;height:34px;border:1px solid var(--border);background:transparent;border-radius:2px;cursor:pointer;font-size:16px;color:var(--brown);display:flex;align-items:center;justify-content:center}
+.detail-qty-btn:hover{background:var(--beige)}
+.detail-qty-val{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--brown);min-width:28px;text-align:center}
+@media(max-width:600px){
+  .detail-body{grid-template-columns:1fr}
+  .detail-img-col{min-height:260px}
+  .detail-info-col{padding:20px 16px}
+  .detail-name{font-size:26px}
+}
 
 /* CARRITO */
 .cart-page{padding:20px;max-width:560px;margin:0 auto}
@@ -109,27 +139,29 @@ body{font-family:'Jost',sans-serif;background:transparent;color:var(--text)}
 .form-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);display:block;margin-bottom:5px}
 .form-input{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:2px;background:var(--white);color:var(--text);font-size:13px;font-family:'Jost',sans-serif}
 .form-input:focus{outline:none;border-color:var(--brown2)}
+textarea.form-input{resize:vertical;min-height:80px;line-height:1.6}
 .img-preview-wrap{margin-top:8px;display:none}
 .img-preview-wrap img{width:80px;height:80px;object-fit:cover;border-radius:3px;border:1px solid var(--border)}
 .img-hint{font-size:10px;color:var(--text3);margin-top:4px;line-height:1.5}
 .btn-primary-full{width:100%;padding:11px;background:var(--brown);color:var(--white);border:none;border-radius:2px;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;margin-top:4px}
 .empty{text-align:center;padding:40px;color:var(--text3)}
+.desc-group{background:var(--beige);border-radius:4px;padding:14px;margin-bottom:12px}
+.desc-group-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:10px;font-weight:500}
 
-/* MODAL EDITAR IMAGEN */
-.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:100;display:none;align-items:center;justify-content:center}
+/* MODAL EDITAR PRODUCTO */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:20px}
 .modal-bg.open{display:flex}
-.modal{background:var(--white);border-radius:4px;border:1px solid var(--border);padding:22px;width:360px;max-width:95vw}
+.modal{background:var(--white);border-radius:4px;border:1px solid var(--border);padding:22px;width:480px;max-width:95vw;margin:auto}
 .modal-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--brown);margin-bottom:16px}
 .modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
 .btn-cancel{padding:7px 14px;border:1px solid var(--border);background:transparent;border-radius:2px;font-size:12px;cursor:pointer;font-family:'Jost',sans-serif;color:var(--text2)}
 .btn-save{padding:7px 16px;background:var(--brown);color:#fff;border:none;border-radius:2px;font-size:12px;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:.5px}
-
 .toast{position:fixed;bottom:18px;right:18px;background:var(--brown);color:var(--white);border-radius:3px;padding:10px 16px;font-size:12px;letter-spacing:.5px;z-index:999;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none}
 .toast.show{opacity:1;transform:translateY(0)}
 </style>
 
 <nav class="nav">
-  <div class="nav-logo">
+  <div class="nav-logo" onclick="go('shop')">
     <span class="nav-logo-name">Alelí</span>
     <span class="nav-logo-sub">Productos para el hogar</span>
   </div>
@@ -142,6 +174,7 @@ body{font-family:'Jost',sans-serif;background:transparent;color:var(--text)}
   </div>
 </nav>
 
+<!-- TIENDA -->
 <div class="page active" id="page-shop">
   <div class="hero">
     <div class="hero-eyebrow">Cuidado capilar natural</div>
@@ -160,6 +193,21 @@ body{font-family:'Jost',sans-serif;background:transparent;color:var(--text)}
   </div>
 </div>
 
+<!-- DETALLE PRODUCTO -->
+<div class="page" id="page-detail">
+  <div class="detail-page">
+    <div class="detail-back" onclick="go('shop')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Volver a la tienda
+    </div>
+    <div class="detail-body">
+      <div class="detail-img-col" id="detail-img-col"></div>
+      <div class="detail-info-col" id="detail-info-col"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARRITO -->
 <div class="page" id="page-cart">
   <div class="cart-page">
     <div class="cart-header">Tu bolsa</div>
@@ -169,6 +217,7 @@ body{font-family:'Jost',sans-serif;background:transparent;color:var(--text)}
   </div>
 </div>
 
+<!-- ADMIN -->
 <div class="page" id="page-admin">
   <div class="admin-page">
     <div class="admin-header">Panel de gestión</div>
@@ -195,7 +244,7 @@ body{font-family:'Jost',sans-serif;background:transparent;color:var(--text)}
         <button class="btn-apply" onclick="doAdjust()">Aplicar</button>
       </div>
     </div>
-    <div id="tab-add" style="display:none;max-width:420px">
+    <div id="tab-add" style="display:none;max-width:480px">
       <div class="form-field"><label class="form-label">Nombre del producto</label><input class="form-input" id="np-name" placeholder="Ej: Shampoo reparador keratina"></div>
       <div class="form-field"><label class="form-label">Precio ($)</label><input class="form-input" type="number" id="np-price" placeholder="3500"></div>
       <div class="form-field"><label class="form-label">Stock inicial</label><input class="form-input" type="number" id="np-stock" placeholder="20"></div>
@@ -204,11 +253,21 @@ body{font-family:'Jost',sans-serif;background:transparent;color:var(--text)}
           <option>Shampoo</option><option>Acondicionador</option><option>Tratamiento</option><option>Protector térmico</option><option>Reparador de puntas</option><option>Mascarilla</option>
         </select>
       </div>
-      <div class="form-field"><label class="form-label">Descripción breve</label><input class="form-input" id="np-desc" placeholder="Ej: Nutrición profunda con aceite de argán"></div>
+      <div class="desc-group">
+        <div class="desc-group-title">Descripciones</div>
+        <div class="form-field">
+          <label class="form-label">Descripción corta <span style="color:var(--text3);font-size:9px">(se ve en la tarjeta de la tienda)</span></label>
+          <input class="form-input" id="np-desc-short" placeholder="Ej: Nutrición profunda con aceite de argán">
+        </div>
+        <div class="form-field" style="margin-bottom:0">
+          <label class="form-label">Descripción completa <span style="color:var(--text3);font-size:9px">(se ve en la página del producto)</span></label>
+          <textarea class="form-input" id="np-desc-long" placeholder="Ej: Formulado con proteínas de seda y queratina hidrolizada, este shampoo actúa desde la primera aplicación restaurando la fibra capilar dañada por el calor o el color. Apto para todo tipo de cabello. Libre de parabenos y sulfatos agresivos."></textarea>
+        </div>
+      </div>
       <div class="form-field">
         <label class="form-label">URL de la foto del producto</label>
-        <input class="form-input" id="np-img" placeholder="https://i.ibb.co/tu-imagen.jpg" oninput="previewNewImg()">
-        <div class="img-hint">Subí tu foto en <strong>imgbb.com</strong> o <strong>imgur.com</strong> y pegá el link directo aquí.</div>
+        <input class="form-input" id="np-img" placeholder="https://raw.githubusercontent.com/..." oninput="previewNewImg()">
+        <div class="img-hint">Usá la URL raw de GitHub o subí en imgbb.com y pegá el link directo.</div>
         <div class="img-preview-wrap" id="new-img-preview">
           <img id="new-img-thumb" src="" alt="Vista previa">
         </div>
@@ -218,25 +277,32 @@ body{font-family:'Jost',sans-serif;background:transparent;color:var(--text)}
   </div>
 </div>
 
-<!-- Modal editar imagen -->
+<!-- Modal editar producto -->
 <div class="modal-bg" id="modal-bg">
   <div class="modal">
-    <div class="modal-title">Cambiar foto del producto</div>
-    <div class="form-field">
-      <label class="form-label">Nombre</label>
-      <div id="modal-prod-name" style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--brown);margin-bottom:12px"></div>
-    </div>
+    <div class="modal-title" id="modal-title">Editar producto</div>
     <div class="form-field">
       <label class="form-label">URL de la imagen</label>
-      <input class="form-input" id="modal-img-url" placeholder="https://i.ibb.co/tu-imagen.jpg" oninput="previewModalImg()">
-      <div class="img-hint">Subí tu foto en <strong>imgbb.com</strong> o <strong>imgur.com</strong> y pegá el link directo aquí.</div>
+      <input class="form-input" id="modal-img-url" placeholder="https://raw.githubusercontent.com/..." oninput="previewModalImg()">
+      <div class="img-hint">GitHub raw, imgbb o imgur.</div>
       <div class="img-preview-wrap" id="modal-preview-wrap" style="margin-top:10px">
         <img id="modal-img-thumb" src="" alt="Vista previa" style="width:100px;height:100px;object-fit:cover;border-radius:3px;border:1px solid var(--border)">
       </div>
     </div>
+    <div class="desc-group">
+      <div class="desc-group-title">Descripciones</div>
+      <div class="form-field">
+        <label class="form-label">Descripción corta <span style="color:var(--text3);font-size:9px">(tarjeta de tienda)</span></label>
+        <input class="form-input" id="modal-desc-short" placeholder="Breve, 1 línea">
+      </div>
+      <div class="form-field" style="margin-bottom:0">
+        <label class="form-label">Descripción completa <span style="color:var(--text3);font-size:9px">(página del producto)</span></label>
+        <textarea class="form-input" id="modal-desc-long" placeholder="Descripción técnica y detallada..."></textarea>
+      </div>
+    </div>
     <div class="modal-actions">
       <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
-      <button class="btn-save" onclick="saveModalImg()">Guardar foto</button>
+      <button class="btn-save" onclick="saveModal()">Guardar cambios</button>
     </div>
   </div>
 </div>
@@ -248,12 +314,24 @@ const WA_NUMBER = "5493513555522";
 let editingId = null;
 
 let products = [
-  {id:1,name:"Shampoo reparador",cat:"Shampoo",price:3200,stock:14,img:"",desc:"Restaura la fibra capilar dañada con proteínas vegetales"},
-  {id:2,name:"Acondicionador nutritivo",cat:"Acondicionador",price:2900,stock:3,img:"",desc:"Hidratación profunda con aceite de argán y manteca de karité"},
-  {id:3,name:"Mascarilla capilar",cat:"Mascarilla",price:4100,stock:0,img:"",desc:"Tratamiento intensivo para cabello muy dañado"},
-  {id:4,name:"Protector térmico",cat:"Protector térmico",price:3500,stock:8,img:"",desc:"Protege hasta 230°C sin pesar el cabello"},
-  {id:5,name:"Reparador de puntas",cat:"Reparador de puntas",price:2200,stock:2,img:"",desc:"Sérum liviano para puntas abiertas y rebeldes"},
-  {id:6,name:"Aceite capilar natural",cat:"Tratamiento",price:4800,stock:11,img:"",desc:"Blend de aceites naturales para brillo y nutrición"},
+  {id:1,name:"Shampoo reparador",cat:"Shampoo",price:3200,stock:14,img:"",
+   descShort:"Restaura la fibra capilar dañada con proteínas vegetales",
+   descLong:"Formulado con proteínas de seda y queratina hidrolizada, este shampoo actúa desde la primera aplicación restaurando la fibra capilar dañada por el calor o el color. Apto para todo tipo de cabello. Libre de parabenos y sulfatos agresivos. Modo de uso: aplicar sobre cabello húmedo, masajear y enjuagar."},
+  {id:2,name:"Acondicionador nutritivo",cat:"Acondicionador",price:2900,stock:3,img:"",
+   descShort:"Hidratación profunda con aceite de argán y manteca de karité",
+   descLong:"Combinación de aceite de argán marroquí y manteca de karité africana que penetra en la fibra capilar para restaurar la hidratación perdida. Deja el cabello suave, manejable y con brillo natural. Ideal para cabellos secos, teñidos o con tratamientos químicos. Dejar actuar 2-3 minutos antes de enjuagar."},
+  {id:3,name:"Mascarilla capilar",cat:"Mascarilla",price:4100,stock:0,img:"",
+   descShort:"Tratamiento intensivo para cabello muy dañado",
+   descLong:"Mascarilla de tratamiento intensivo con complejo de ceramidas y proteínas del trigo. Reconstruye el cabello desde adentro, sellando las cutículas abiertas y devolviendo elasticidad y volumen. Aplicar 1 vez por semana. Dejar actuar 10-15 minutos con calor para máxima efectividad. Apta para cabellos quebradizos, con frizz o extremadamente secos."},
+  {id:4,name:"Protector térmico",cat:"Protector térmico",price:3500,stock:8,img:"",
+   descShort:"Protege hasta 230°C sin pesar el cabello",
+   descLong:"Spray termoprotector de fórmula ultraliviana que crea una barrera invisible contra el calor del secador, plancha y rulo. Protege hasta 230°C sin dejar residuo ni pesar el cabello. Contiene vitamina E y aceite de girasol para nutrir mientras protege. Aplicar sobre cabello húmedo antes del secado o sobre cabello seco antes del planchado."},
+  {id:5,name:"Reparador de puntas",cat:"Reparador de puntas",price:2200,stock:2,img:"",
+   descShort:"Sérum liviano para puntas abiertas y rebeldes",
+   descLong:"Sérum sin enjuague con tecnología de aceites sellantes que une las puntas abiertas y controla el frizz de forma inmediata. Fórmula no grasa que absorbe rápidamente. Contiene aceite de argán, aceite de macadamia y silicona vegetal. Aplicar una pequeña cantidad sobre las puntas del cabello seco o húmedo. No requiere enjuague."},
+  {id:6,name:"Aceite capilar natural",cat:"Tratamiento",price:4800,stock:11,img:"",
+   descShort:"Blend de aceites naturales para brillo y nutrición",
+   descLong:"Blend premium de aceites naturales: argán, rosa mosqueta, jojoba y coco. Nutre en profundidad, aporta brillo espejado y controla el frizz sin engrasar. Multifunción: puede usarse como pre-baño para nutrición profunda, como sérum finalizador o como tratamiento nocturno. Apto para todo tipo de cabello, incluso fino."},
 ];
 let cart = {};
 let nextId = 7;
@@ -263,132 +341,139 @@ const cats = ["Todo","Shampoo","Acondicionador","Tratamiento","Protector térmic
 function fmt(n){return "$"+n.toLocaleString("es-AR")}
 function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2500)}
 
-function imgOrPlaceholder(img, size=160){
-  if(img) return `<img src="${img}" alt="producto" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML=placeholderSVG()">`;
-  return placeholderSVG();
+function imgOrPlaceholder(img){
+  if(img) return `<img src="${img}" alt="producto" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML=placeholderHTML()">`;
+  return placeholderHTML();
 }
-
-function placeholderSVG(){
-  return `<div class="product-placeholder">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-    <span>Sin foto</span>
-  </div>`;
+function placeholderHTML(){
+  return `<div class="product-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Sin foto</span></div>`;
 }
-
 function thumbOrPlaceholder(img){
   if(img) return `<img src="${img}" class="thumb" alt="" onerror="this.outerHTML='<div class=thumb-placeholder>📷</div>'">`;
-  return `<div class="thumb-placeholder" style="font-size:14px">📷</div>`;
+  return `<div class="thumb-placeholder">📷</div>`;
 }
 
-function previewNewImg(){
-  const url = document.getElementById("np-img").value.trim();
-  const wrap = document.getElementById("new-img-preview");
-  const thumb = document.getElementById("new-img-thumb");
-  if(url){wrap.style.display="block";thumb.src=url;}
-  else{wrap.style.display="none";}
+/* ── DETALLE ── */
+function openDetail(id){
+  const p = products.find(x=>x.id===id);
+  if(!p) return;
+
+  const imgCol = document.getElementById("detail-img-col");
+  if(p.img){
+    imgCol.innerHTML = `<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;min-height:380px;object-fit:cover">`;
+  } else {
+    imgCol.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;min-height:380px;gap:10px;color:var(--text3)"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span style="font-size:11px;letter-spacing:1px;text-transform:uppercase;opacity:.5">Sin foto</span></div>`;
+  }
+
+  const inCart = cart[p.id]||0;
+  const sClass = p.stock===0?"stock-out-txt":p.stock<=3?"stock-low-txt":"";
+  const sLabel = p.stock===0?"Sin stock":p.stock<=3?`Solo ${p.stock} disponibles`:`${p.stock} en stock`;
+  const longDesc = p.descLong || p.descShort || "";
+
+  const actionsHTML = p.stock===0
+    ? `<button class="btn-detail-add" disabled>Sin stock</button>`
+    : inCart>0
+    ? `<div style="display:flex;align-items:center;gap:12px">
+        <div class="detail-qty-row">
+          <button class="detail-qty-btn" onclick="chCart(${p.id},-1);openDetail(${p.id})">−</button>
+          <span class="detail-qty-val">${inCart}</span>
+          <button class="detail-qty-btn" onclick="chCart(${p.id},1);openDetail(${p.id})">+</button>
+        </div>
+        <span style="font-size:12px;color:var(--text3)">${inCart} en tu bolsa</span>
+      </div>`
+    : `<button class="btn-detail-add" onclick="chCart(${p.id},1);openDetail(${p.id})">Agregar a la bolsa</button>`;
+
+  document.getElementById("detail-info-col").innerHTML = `
+    <div class="detail-cat">${p.cat}</div>
+    <div class="detail-name">${p.name}</div>
+    <div class="detail-price">${fmt(p.price)}</div>
+    <div class="detail-stock ${sClass}">${sLabel}</div>
+    <div class="detail-divider"></div>
+    <div>
+      <div class="detail-desc-label" style="margin-bottom:8px">Descripción del producto</div>
+      <div class="detail-desc-text">${longDesc.replace(/\n/g,'<br>')}</div>
+    </div>
+    <div class="detail-divider"></div>
+    <div class="detail-actions">${actionsHTML}</div>
+  `;
+
+  document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+  document.getElementById("page-detail").classList.add("active");
+  document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active-nav"));
+  window.scrollTo(0,0);
 }
 
-function previewModalImg(){
-  const url = document.getElementById("modal-img-url").value.trim();
-  const wrap = document.getElementById("modal-preview-wrap");
-  const thumb = document.getElementById("modal-img-thumb");
-  if(url){wrap.style.display="block";thumb.src=url;}
-  else{wrap.style.display="none";}
-}
-
-function openEditImg(id){
+/* ── MODAL EDITAR ── */
+function openEditModal(id){
   const p = products.find(x=>x.id===id);
   editingId = id;
-  document.getElementById("modal-prod-name").textContent = p.name;
-  document.getElementById("modal-img-url").value = p.img || "";
+  document.getElementById("modal-title").textContent = `Editar: ${p.name}`;
+  document.getElementById("modal-img-url").value = p.img||"";
+  document.getElementById("modal-desc-short").value = p.descShort||"";
+  document.getElementById("modal-desc-long").value = p.descLong||"";
   const wrap = document.getElementById("modal-preview-wrap");
   const thumb = document.getElementById("modal-img-thumb");
   if(p.img){wrap.style.display="block";thumb.src=p.img;}
   else{wrap.style.display="none";}
   document.getElementById("modal-bg").classList.add("open");
 }
-
 function closeModal(){
   document.getElementById("modal-bg").classList.remove("open");
-  editingId = null;
+  editingId=null;
 }
-
-function saveModalImg(){
-  const url = document.getElementById("modal-img-url").value.trim();
+function saveModal(){
   const p = products.find(x=>x.id===editingId);
-  p.img = url;
-  toast(`Foto de "${p.name}" actualizada ✓`);
+  p.img = document.getElementById("modal-img-url").value.trim();
+  p.descShort = document.getElementById("modal-desc-short").value.trim();
+  p.descLong = document.getElementById("modal-desc-long").value.trim();
+  toast(`"${p.name}" actualizado ✓`);
   closeModal();
   renderAdmin();
 }
-
-function buildWAMessage(){
-  const keys = Object.keys(cart);
-  let sub = 0;
-  let lines = ["🌿 *Hola Alelí!* Me gustaría hacer el siguiente pedido:\n"];
-  keys.forEach(id=>{
-    const p = products.find(x=>x.id==id);
-    const q = cart[id];
-    sub += p.price*q;
-    lines.push(`• *${p.name}* x${q} → ${fmt(p.price*q)}`);
-  });
-  const envio = sub>=20000?0:1800;
-  lines.push(`\n💰 *Subtotal:* ${fmt(sub)}`);
-  lines.push(`🚚 *Envío:* ${envio===0?"Gratis 🎉":fmt(envio)}`);
-  lines.push(`✅ *Total:* ${fmt(sub+envio)}`);
-  lines.push("\n¡Espero su respuesta para coordinar el pago y la entrega!");
-  return lines.join("\n");
+function previewModalImg(){
+  const url=document.getElementById("modal-img-url").value.trim();
+  const wrap=document.getElementById("modal-preview-wrap");
+  const thumb=document.getElementById("modal-img-thumb");
+  if(url){wrap.style.display="block";thumb.src=url;}else{wrap.style.display="none";}
 }
 
-function confirmOrder(){
-  const msg = buildWAMessage();
-  const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
-  Object.keys(cart).forEach(id=>{
-    const p = products.find(x=>x.id==id);
-    p.stock = Math.max(0, p.stock - cart[id]);
-  });
-  cart = {};
-  updateBadge();
-  toast("Abriendo WhatsApp con tu pedido ✓");
-  renderCart();
-  setTimeout(()=>window.open(url,"_blank"), 400);
-}
-
+/* ── NAVEGACIÓN ── */
 function go(p){
   document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
   document.getElementById("page-"+p).classList.add("active");
   document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active-nav"));
-  const idx = p==="shop"?0:p==="admin"?1:2;
-  document.querySelectorAll(".nav-btn")[idx].classList.add("active-nav");
+  const idx=p==="shop"?0:p==="admin"?1:2;
+  if(idx>=0) document.querySelectorAll(".nav-btn")[idx].classList.add("active-nav");
   if(p==="shop") renderShop();
   if(p==="admin") renderAdmin();
   if(p==="cart") renderCart();
+  window.scrollTo(0,0);
 }
 
+/* ── TIENDA ── */
 function renderFilters(){
-  document.getElementById("filters-bar").innerHTML = cats.map(c=>
+  document.getElementById("filters-bar").innerHTML=cats.map(c=>
     `<button class="filter-btn${c===activeCat?" active":""}" onclick="setCat('${c}')">${c}</button>`
   ).join("");
 }
-
 function setCat(c){activeCat=c;renderShop()}
 
 function renderShop(){
   renderFilters();
-  const filtered = activeCat==="Todo"?products:products.filter(p=>p.cat===activeCat);
-  document.getElementById("products-grid").innerHTML = filtered.map(p=>{
-    const inCart = cart[p.id]||0;
-    const sClass = p.stock===0?"stock-out-txt":p.stock<=3?"stock-low-txt":"";
-    const sLabel = p.stock===0?"Sin stock":p.stock<=3?`Solo ${p.stock} disponibles`:`${p.stock} en stock`;
+  const filtered=activeCat==="Todo"?products:products.filter(p=>p.cat===activeCat);
+  document.getElementById("products-grid").innerHTML=filtered.map(p=>{
+    const inCart=cart[p.id]||0;
+    const sClass=p.stock===0?"stock-out-txt":p.stock<=3?"stock-low-txt":"";
+    const sLabel=p.stock===0?"Sin stock":p.stock<=3?`Solo ${p.stock} disponibles`:`${p.stock} en stock`;
     return `<div class="product-card">
-      <div class="product-img-wrap">
+      <div class="product-img-wrap" onclick="openDetail(${p.id})">
         ${p.stock<=3&&p.stock>0?'<span class="product-badge">Últimas</span>':''}
         ${imgOrPlaceholder(p.img)}
       </div>
       <div class="product-body">
-        <div class="product-cat">${p.cat}</div>
-        <div class="product-name">${p.name}</div>
-        <div class="product-desc">${p.desc}</div>
+        <div class="product-cat" onclick="openDetail(${p.id})">${p.cat}</div>
+        <div class="product-name" onclick="openDetail(${p.id})" style="cursor:pointer">${p.name}</div>
+        <div class="product-desc-short">${p.descShort||""}</div>
         <div class="product-price">${fmt(p.price)}</div>
         <div class="product-stock-info ${sClass}">${sLabel}</div>
         ${p.stock===0
@@ -404,23 +489,23 @@ function renderShop(){
 }
 
 function chCart(id,d){
-  const p = products.find(x=>x.id===id);
+  const p=products.find(x=>x.id===id);
   if(!p) return;
-  const cur = cart[id]||0;
+  const cur=cart[id]||0;
   if(d>0&&cur>=p.stock){toast("No hay más stock disponible");return;}
-  const nxt = Math.max(0,Math.min(cur+d,p.stock));
+  const nxt=Math.max(0,Math.min(cur+d,p.stock));
   if(nxt===0) delete cart[id]; else cart[id]=nxt;
   renderShop(); updateBadge();
 }
-
 function updateBadge(){
-  document.getElementById("cart-count").textContent = Object.values(cart).reduce((a,b)=>a+b,0);
+  document.getElementById("cart-count").textContent=Object.values(cart).reduce((a,b)=>a+b,0);
 }
 
+/* ── CARRITO ── */
 function renderCart(){
-  const keys = Object.keys(cart);
-  const el = document.getElementById("cart-items-list");
-  const ta = document.getElementById("cart-total-area");
+  const keys=Object.keys(cart);
+  const el=document.getElementById("cart-items-list");
+  const ta=document.getElementById("cart-total-area");
   if(!keys.length){
     el.innerHTML=`<div class="empty"><div style="font-size:36px;margin-bottom:10px">🌿</div><p style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--brown)">Tu bolsa está vacía</p><p style="font-size:12px;color:var(--text3);margin-top:6px">Explorá nuestros productos naturales</p></div>`;
     ta.innerHTML="";
@@ -432,9 +517,7 @@ function renderCart(){
   el.innerHTML=keys.map(id=>{
     const p=products.find(x=>x.id==id);
     const q=cart[id]; sub+=p.price*q;
-    const imgEl = p.img
-      ? `<img src="${p.img}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">`
-      : `<span class="ci-img-placeholder">🌿</span>`;
+    const imgEl=p.img?`<img src="${p.img}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">`:`<span class="ci-img-placeholder">🌿</span>`;
     return `<div class="cart-item">
       <div class="ci-img">${imgEl}</div>
       <div class="ci-info">
@@ -457,7 +540,7 @@ function renderCart(){
     <div class="total-row"><span>Envío</span><span>${envio===0?'<span style="color:var(--green)">Gratis</span>':fmt(envio)}</span></div>
     <div class="total-final"><span>Total</span><span>${fmt(sub+envio)}</span></div>
     <button class="btn-wa" onclick="confirmOrder()">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
       Confirmar pedido por WhatsApp
     </button>
     <div class="wa-note">Al confirmar, se abrirá WhatsApp con el detalle completo de tu pedido.</div>
@@ -465,6 +548,36 @@ function renderCart(){
   </div>`;
 }
 
+function buildWAMessage(){
+  const keys=Object.keys(cart);
+  let sub=0;
+  let lines=["🌿 *Hola Alelí!* Me gustaría hacer el siguiente pedido:\n"];
+  keys.forEach(id=>{
+    const p=products.find(x=>x.id==id);
+    const q=cart[id]; sub+=p.price*q;
+    lines.push(`• *${p.name}* x${q} → ${fmt(p.price*q)}`);
+  });
+  const envio=sub>=20000?0:1800;
+  lines.push(`\n💰 *Subtotal:* ${fmt(sub)}`);
+  lines.push(`🚚 *Envío:* ${envio===0?"Gratis 🎉":fmt(envio)}`);
+  lines.push(`✅ *Total:* ${fmt(sub+envio)}`);
+  lines.push("\n¡Espero su respuesta para coordinar el pago y la entrega!");
+  return lines.join("\n");
+}
+function confirmOrder(){
+  const msg=buildWAMessage();
+  const url=`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+  Object.keys(cart).forEach(id=>{
+    const p=products.find(x=>x.id==id);
+    p.stock=Math.max(0,p.stock-cart[id]);
+  });
+  cart={}; updateBadge();
+  toast("Abriendo WhatsApp con tu pedido ✓");
+  renderCart();
+  setTimeout(()=>window.open(url,"_blank"),400);
+}
+
+/* ── ADMIN ── */
 function renderAdmin(){
   const sinStock=products.filter(p=>p.stock===0).length;
   const bajo=products.filter(p=>p.stock>0&&p.stock<=3).length;
@@ -483,7 +596,7 @@ function renderAdmin(){
       <td><strong>${p.stock}</strong></td>
       <td>${b}</td>
       <td><div class="quick-btns">
-        <button class="q-stock edit-btn" onclick="openEditImg(${p.id})">📷 Foto</button>
+        <button class="q-stock edit-btn" onclick="openEditModal(${p.id})">✏️ Editar</button>
         <button class="q-stock" onclick="qStock(${p.id},5)">+5</button>
         <button class="q-stock" onclick="qStock(${p.id},10)">+10</button>
         <button class="q-stock" onclick="qStock(${p.id},-1)">−1</button>
@@ -500,7 +613,6 @@ function qStock(id,d){
   toast(`"${p.name}" → ${p.stock} unidades`);
   renderAdmin();
 }
-
 function doAdjust(){
   const id=parseInt(document.getElementById("adj-sel").value);
   const val=parseInt(document.getElementById("adj-val").value);
@@ -513,30 +625,34 @@ function doAdjust(){
   toast(`"${p.name}": stock → ${p.stock}`);
   renderAdmin();
 }
-
 function delProd(id){
   const p=products.find(x=>x.id===id);
-  if(!confirm(`¿Eliminar "${p.name}" de la tienda?`))return;
+  if(!confirm(`¿Eliminar "${p.name}" de la tienda?`)) return;
   products=products.filter(x=>x.id!==id);
   delete cart[id]; updateBadge();
   toast(`"${p.name}" eliminado`); renderAdmin();
 }
-
+function previewNewImg(){
+  const url=document.getElementById("np-img").value.trim();
+  const wrap=document.getElementById("new-img-preview");
+  const thumb=document.getElementById("new-img-thumb");
+  if(url){wrap.style.display="block";thumb.src=url;}else{wrap.style.display="none";}
+}
 function addProd(){
   const name=document.getElementById("np-name").value.trim();
   const price=parseFloat(document.getElementById("np-price").value);
   const stock=parseInt(document.getElementById("np-stock").value);
   const cat=document.getElementById("np-cat").value;
-  const desc=document.getElementById("np-desc").value.trim()||"Producto Alelí";
+  const descShort=document.getElementById("np-desc-short").value.trim();
+  const descLong=document.getElementById("np-desc-long").value.trim();
   const img=document.getElementById("np-img").value.trim();
   if(!name||isNaN(price)||isNaN(stock)){toast("Completá nombre, precio y stock");return;}
-  products.push({id:nextId++,name,price,stock,cat,desc,img});
-  ["np-name","np-price","np-stock","np-desc","np-img"].forEach(id=>document.getElementById(id).value="");
+  products.push({id:nextId++,name,price,stock,cat,descShort,descLong,img});
+  ["np-name","np-price","np-stock","np-desc-short","np-desc-long","np-img"].forEach(id=>document.getElementById(id).value="");
   document.getElementById("new-img-preview").style.display="none";
-  toast(`"${name}" agregado a la tienda ✓`);
+  toast(`"${name}" agregado ✓`);
   aTab("stock",document.querySelector(".tab")); renderAdmin();
 }
-
 function aTab(t,el){
   document.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));
   el.classList.add("on");
